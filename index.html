@@ -3,38 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mathe-Spiele Übersicht</title>
+<title>Mathe Startseite</title>
 <style>
   body {
     font-family: "Segoe UI", sans-serif;
-    background: #f7f9fc;
+    background: #f5f8fb;
     color: #003366;
     text-align: center;
-    padding: 50px;
+    margin: 0;
+    padding: 0;
   }
-  h1 { font-size: 2em; margin-bottom: 0.5em; }
-  p { font-size: 1.2em; margin-bottom: 30px; }
-  a {
-    display: inline-block;
-    margin: 12px;
-    padding: 12px 20px;
-    background: #0078d7;
+
+  header {
+    background: linear-gradient(135deg, #0078d7, #00a0e3);
     color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background 0.2s;
+    padding: 40px 20px 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
-  a:hover { background: #005fa3; }
+
+  header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  header p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    padding: 40px 20px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 30px 10px;
+    text-decoration: none;
+    color: #003366;
+    font-size: 1.3rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    border-top: 5px solid transparent;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 14px rgba(0,0,0,0.15);
+    border-top-color: #0078d7;
+  }
+
+  footer {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    padding-bottom: 20px;
+  }
 </style>
 </head>
 <body>
 
-<h1>🧮 Mathe-Spiele</h1>
-<p>Wähle ein Thema:</p>
+<header>
+  <h1>🧮 Mathe für Schülerinnen und Schüler</h1>
+  <p>Wähle deine Klassenstufe und das passende Thema aus.</p>
+</header>
 
-<a href="multiplizieren/">Potenzen multiplizieren</a>
-<a href="dividieren/">Potenzen dividieren</a>
+<main>
+  <a href="M5/" class="card" style="background:#e8f3ff;">M5</a>
+  <a href="M6/" class="card" style="background:#e7f9ee;">M6</a>
+  <a href="M7_I/" class="card" style="background:#fff5e6;">M7 I</a>
+  <a href="M7_II_III/" class="card" style="background:#f5ebff;">M7 II / III</a>
+  <a href="M8_I/" class="card" style="background:#e8f7fa;">M8 I</a>
+  <a href="M8_II_III/" class="card" style="background:#f7efe8;">M8 II / III</a>
+  <a href="M9_I/" class="card" style="background:#edf9f2;">M9 I</a>
+  <a href="M9_II_III/" class="card" style="background:#f4f0ff;">M9 II / III</a>
+  <a href="M10_I/" class="card" style="background:#fef6ea;">M10 I</a>
+  <a href="M10_II_III/" class="card" style="background:#eaf8ff;">M10 II / III</a>
+</main>
+
+<footer>
+  © 2025 – Mathe-Übungen von <strong>deinem Lehrerteam</strong>
+</footer>
 
 </body>
 </html>
-
