@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mathe Startseite</title>
+<title>Mathe für Schülerinnen und Schüler</title>
 <style>
   :root {
     --blue: #0078d7;
@@ -73,20 +73,23 @@
   .label {
     font-size: 1.2rem;
     font-weight: 600;
-    margin-top: 5px;
   }
 
-  /* Farbverläufe für Jahrgangsstufen */
-  .M5 { background: linear-gradient(180deg, #eaf4ff 0%, #ffffff 100%); }
-  .M6 { background: linear-gradient(180deg, #e8fbee 0%, #ffffff 100%); }
-  .M7_I { background: linear-gradient(180deg, #fff4e3 0%, #ffffff 100%); }
-  .M7_II_III { background: linear-gradient(180deg, #f3eaff 0%, #ffffff 100%); }
-  .M8_I { background: linear-gradient(180deg, #e6f9fd 0%, #ffffff 100%); }
-  .M8_II_III { background: linear-gradient(180deg, #fff2e8 0%, #ffffff 100%); }
-  .M9_I { background: linear-gradient(180deg, #eafbf0 0%, #ffffff 100%); }
-  .M9_II_III { background: linear-gradient(180deg, #f5f1ff 0%, #ffffff 100%); }
-  .M10_I { background: linear-gradient(180deg, #fff9e8 0%, #ffffff 100%); }
-  .M10_II_III { background: linear-gradient(180deg, #eaf7ff 0%, #ffffff 100%); }
+  #backBtn {
+    display: none;
+    margin: 20px auto 40px;
+    padding: 10px 20px;
+    background: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  #backBtn:hover {
+    background: var(--darkblue);
+  }
 
   footer {
     text-align: center;
@@ -100,64 +103,158 @@
 
 <header>
   <h1>🧮 Mathe für Schülerinnen und Schüler</h1>
-  <p>Wähle deine Klassenstufe, um zu den Übungen und Spielen zu gelangen.</p>
+  <p id="subtitle">Wähle deine Klassenstufe, um zu den Übungen und Spielen zu gelangen.</p>
 </header>
 
-<main>
-  <a href="M5/" class="card M5">
-    <div class="icon">🔢</div>
-    <div class="label">M5</div>
-  </a>
-
-  <a href="M6/" class="card M6">
-    <div class="icon">📏</div>
-    <div class="label">M6</div>
-  </a>
-
-  <a href="M7_I/" class="card M7_I">
-    <div class="icon">📐</div>
-    <div class="label">M7 I</div>
-  </a>
-
-  <a href="M7_II_III/" class="card M7_II_III">
-    <div class="icon">🧩</div>
-    <div class="label">M7 II / III</div>
-  </a>
-
-  <a href="M8_I/" class="card M8_I">
-    <div class="icon">✖️</div>
-    <div class="label">M8 I</div>
-  </a>
-
-  <a href="M8_II_III/" class="card M8_II_III">
-    <div class="icon">➗</div>
-    <div class="label">M8 II / III</div>
-  </a>
-
-  <a href="M9_I/" class="card M9_I">
-    <div class="icon">📊</div>
-    <div class="label">M9 I</div>
-  </a>
-
-  <a href="M9_II_III/" class="card M9_II_III">
-    <div class="icon">📉</div>
-    <div class="label">M9 II / III</div>
-  </a>
-
-  <a href="M10_I/" class="card M10_I">
-    <div class="icon">📈</div>
-    <div class="label">M10 I</div>
-  </a>
-
-  <a href="M10_II_III/" class="card M10_II_III">
-    <div class="icon">🧠</div>
-    <div class="label">M10 II / III</div>
-  </a>
-</main>
+<main id="grid"></main>
+<button id="backBtn">⬅️ Zurück</button>
 
 <footer>
   © 2025 – Mathe-Lernplattform für Schülerinnen und Schüler 🧮
 </footer>
+
+<script>
+/* ===========================================
+   🔢 Datenstruktur: Klassen & Themen
+   =========================================== */
+const data = {
+  M5: {
+    icon: "🔢",
+    color: "#eaf4ff",
+    topics: [
+      "Natürliche Zahlen", "Rechnen mit großen Zahlen", "Runden & Überschlagen",
+      "Multiplikation & Division", "Zahlenstrahl", "Größen & Einheiten",
+      "Zeit & Kalender", "Geometrische Formen", "Symmetrie", "Brüche kennenlernen"
+    ]
+  },
+  M6: {
+    icon: "📏",
+    color: "#e7f9ee",
+    topics: [
+      "Brüche & Dezimalzahlen", "Prozentrechnung", "Volumen & Flächen",
+      "Dreiecke & Vierecke", "Rechnen mit Größen", "Primzahlen & Teilbarkeit",
+      "Koordinatensystem", "Zahlenmengen", "Mittelwert & Diagramme", "Einheiten umrechnen"
+    ]
+  },
+  M7_I: {
+    icon: "📐",
+    color: "#fff5e6",
+    topics: [
+      "Potenzgesetze", "Wurzeln", "Terme umformen",
+      "Gleichungen lösen", "Proportionalität", "Flächen & Volumen",
+      "Dreisatz", "Prozent & Zinsen", "Diagramme", "Wiederholung & Spiele"
+    ]
+  },
+  M7_II_III: {
+    icon: "🧩",
+    color: "#f5ebff",
+    topics: [
+      "Terme & Variablen", "Lineare Gleichungen", "Koordinatensystem",
+      "Geraden & Steigung", "Funktionen verstehen", "Winkel & Dreiecke",
+      "Prozentrechnung", "Formeln umstellen", "Einheiten", "Knobelaufgaben"
+    ]
+  },
+  M8_I: {
+    icon: "✖️",
+    color: "#e8f7fa",
+    topics: [
+      "Potenzen multiplizieren", "Potenzen dividieren", "Wurzeln ziehen",
+      "Terme vereinfachen", "Funktionen", "Geraden & Parabeln",
+      "Brüche", "Gleichungen", "Prozent & Zins", "Mathe-Spiele"
+    ]
+  },
+  M8_II_III: {
+    icon: "➗",
+    color: "#f7efe8",
+    topics: [
+      "Potenzen", "Wurzeln", "Exponentialfunktionen",
+      "Zerfall & Wachstum", "Quadratische Gleichungen", "Satz des Pythagoras",
+      "Geometrie", "Prozent & Zins", "Zufall & Wahrscheinlichkeit", "Wiederholung"
+    ]
+  },
+  M9_I: {
+    icon: "📊",
+    color: "#edf9f2",
+    topics: [
+      "Funktionen", "Prozent & Zins", "Lineare Gleichungssysteme",
+      "Quadratische Funktionen", "Trigonometrie", "Volumenberechnung",
+      "Zufallsexperimente", "Diagramme", "Mittelwert", "Wiederholung"
+    ]
+  },
+  M9_II_III: {
+    icon: "📉",
+    color: "#f4f0ff",
+    topics: [
+      "Wiederholung Potenzen", "Zinseszins", "Funktionenanalyse",
+      "Zufallsvariablen", "Statistik", "Daten interpretieren",
+      "Trigonometrie", "Formeln anwenden", "Knobelaufgaben", "Wiederholung"
+    ]
+  },
+  M10_I: {
+    icon: "📈",
+    color: "#fef6ea",
+    topics: [
+      "Lineare Funktionen", "Quadratische Gleichungen", "Parabeln",
+      "Trigonometrie", "Exponentialfunktionen", "Wachstum & Zerfall",
+      "Zufall & Statistik", "Zinsrechnung", "Terme", "Wiederholung"
+    ]
+  },
+  M10_II_III: {
+    icon: "🧠",
+    color: "#eaf8ff",
+    topics: [
+      "Exponentialfunktionen", "Logarithmen", "Wahrscheinlichkeiten",
+      "Statistik", "Trigonometrie", "Funktionenanalyse",
+      "Zinseszins & Wachstum", "Differenzenquotient", "Satz des Pythagoras", "Wiederholung"
+    ]
+  }
+};
+
+/* ===========================================
+   🧱 UI Rendering
+   =========================================== */
+const grid = document.getElementById("grid");
+const subtitle = document.getElementById("subtitle");
+const backBtn = document.getElementById("backBtn");
+
+function renderMain() {
+  grid.innerHTML = "";
+  subtitle.textContent = "Wähle deine Klassenstufe, um zu den Übungen und Spielen zu gelangen.";
+  backBtn.style.display = "none";
+
+  Object.entries(data).forEach(([key, val]) => {
+    const a = document.createElement("a");
+    a.href = "#";
+    a.className = "card";
+    a.style.background = `linear-gradient(180deg, ${val.color} 0%, #ffffff 100%)`;
+    a.innerHTML = `<div class="icon">${val.icon}</div><div class="label">${key}</div>`;
+    a.onclick = (e) => { e.preventDefault(); renderTopics(key); };
+    grid.appendChild(a);
+  });
+}
+
+function renderTopics(classKey) {
+  const cls = data[classKey];
+  grid.innerHTML = "";
+  subtitle.textContent = `📘 Klasse ${classKey} – Themenübersicht`;
+  backBtn.style.display = "inline-block";
+
+  cls.topics.forEach((topic, i) => {
+    const a = document.createElement("a");
+    a.href = "#";
+    a.className = "card";
+    a.style.background = `linear-gradient(180deg, ${cls.color} 0%, #ffffff 100%)`;
+    a.innerHTML = `<div class="icon">${cls.icon}</div><div class="label">${topic}</div>`;
+    grid.appendChild(a);
+  });
+}
+
+// Navigation
+backBtn.addEventListener("click", renderMain);
+
+// Initial Load
+renderMain();
+</script>
 
 </body>
 </html>
