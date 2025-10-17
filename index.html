@@ -27,14 +27,20 @@
     box-shadow: 0 2px 10px rgba(0,0,0,0.15);
   }
 
+  /* 🔹 Logo oben rechts */
   #logo {
     position: absolute;
     top: 20px;
     right: 25px;
-    width: 80px;          /* Logo-Größe */
+    width: 70px;          /* Größe anpassen */
     height: auto;
-    border-radius: 50%;   /* macht es rund, kann entfernt werden */
-    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    border-radius: 50%;
+    transition: transform 0.25s ease;
+  }
+
+  /* Hover-Effekt (leichtes Vergrößern) */
+  #logo:hover {
+    transform: scale(1.08);
   }
 
   header h1 {
@@ -114,7 +120,9 @@
 
 <header>
   <!-- 🔹 Logo oben rechts -->
-  <img src="assets/logo.png" alt="Logo Herr Berglehner" id="logo">
+  <a href="index.html">
+    <img src="assets/logo.png" alt="Logo Herr Berglehner" id="logo">
+  </a>
 
   <h1>🧮 Mathe für Schülerinnen und Schüler</h1>
   <p id="subtitle">Wähle deine Klassenstufe, um zu den Übungen und Spielen zu gelangen.</p>
@@ -128,6 +136,9 @@
 </footer>
 
 <script>
+/* ===========================================
+   🔢 Datenstruktur: Klassen & Themen
+   =========================================== */
 const data = {
   M5: {
     icon: "🔢",
@@ -221,6 +232,9 @@ const data = {
   }
 };
 
+/* ===========================================
+   🧱 UI Rendering
+   =========================================== */
 const grid = document.getElementById("grid");
 const subtitle = document.getElementById("subtitle");
 const backBtn = document.getElementById("backBtn");
@@ -257,6 +271,7 @@ function renderTopics(classKey) {
   });
 }
 
+// Navigation
 backBtn.addEventListener("click", renderMain);
 renderMain();
 </script>
